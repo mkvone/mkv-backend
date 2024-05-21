@@ -19,11 +19,11 @@ jobs:
               working-directory: .
 
             - name: Stop previous Docker container
-              run: sudo docker stop mkv_backend_docker_container || true
+              run: sudo docker stop backend || true
               continue-on-error: true
 
             - name: Remove previous Docker container
-              run: sudo docker rm mkv_backend_docker_container || true
+              run: sudo docker rm backend || true
               continue-on-error: true
 
             - name: Run Docker container
