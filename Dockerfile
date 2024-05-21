@@ -63,7 +63,7 @@ COPY --from=ssl /etc/group /etc/group
 COPY --from=ssl --chown=backend:backend /var/lib/backend /var/lib/backend
 
 COPY --from=builder /build/app/backend /bin/backend
-COPY --from=builder /build/app/example-config.yml /var/lib/backend
+COPY --from=builder /build/app/example-config.toml /var/lib/backend
 
 USER backend
 WORKDIR /var/lib/backend

@@ -1,0 +1,138 @@
+[swagger]
+enable = true
+port = 9999
+
+
+[databases.mongodb]
+url = ""
+
+[alert.slack]
+enable = false
+webhook = "https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX"
+
+[alert.discord]
+enable = false
+webhook = "https://discord.com/api/webhooks/XXXXX/XXXXX"
+
+[alert.telegram]
+enable = false
+token = "XXXXX"
+chat_id = "XXXXX"
+
+# Odin
+[[chains]]
+name = "Odin"
+img_url = "https://raw.githubusercontent.com/cosmos/chain-registry/115602a0a3d1c0168ce5b9af7f24f094f5c00318/odin/images/odin.svg"
+
+[chains.endpoints]
+rpc = "https://rpc-odin.mkv.one"
+api = "https://api-odin.mkv.one"
+grpc = "grpc-odin.mkv.one:443"
+
+[chains.symbol]
+ticker = "odin"
+[chains.snapshot]
+enable = true
+snapshot_url = "https://snapshots.mkv.one/odin"
+
+[chains.validator]
+enable = true
+operator_addr = "odinvaloper1fupf80rhes3vu25vgjsk6sp8t68urpldecak8y"
+wallet_address = ""
+
+
+# e-Money
+[[chains]]
+name = "e-Money"
+img_url= "https://raw.githubusercontent.com/cosmos/chain-registry/115602a0a3d1c0168ce5b9af7f24f094f5c00318/emoney/images/ngm.svg"
+
+[chains.endpoints]
+rpc = "https://rpc-emoney.mkv.one"
+api = "https://api-emoney.mkv.one"
+grpc = "grpc-emoney.mkv.one:443"
+
+[chains.symbol]
+ticker = "ngm"
+
+[chains.snapshot]
+enable = true
+snapshot_url = "https://snapshots.mkv.one/emoney"
+
+[chains.validator]
+enable = true
+operator_addr = "emoneyvaloper1jm27nlfre05lnelxkn2j45xf73tqpnnnec00yr"
+wallet_address = "emoney1jm27nlfre05lnelxkn2j45xf73tqpnnn7cfm6w"
+
+
+# Kava
+[[chains]]
+name = "Kava"
+
+img_url = "https://raw.githubusercontent.com/cosmos/chain-registry/115602a0a3d1c0168ce5b9af7f24f094f5c00318/kava/images/kava.svg"
+
+[chains.endpoints]
+rpc = "https://rpc-kava.mkv.one"
+api = "https://api-kava.mkv.one"
+grpc = "grpc-kava.mkv.one:443"
+
+[chains.symbol]
+ticker = "kava"
+
+[chains.snapshot]
+enable = true
+snapshot_url = "https://snapshots.mkv.one/kava"
+
+[chains.validator]
+enable = true
+operator_addr = "kavavaloper18zxhj6f8lm988mfzzvmrmlp47yys0fmcllmscg"
+
+wallet_address = "kava18zxhj6f8lm988mfzzvmrmlp47yys0fmcjfpcql"
+
+
+# Kichain
+[[chains]]
+name = "Kichain"
+
+img_url= "https://raw.githubusercontent.com/cosmos/chain-registry/ff39d74d8e210c75a4f2588faae3abb57308956a/kichain/images/xki.svg"
+
+[chains.endpoints]
+rpc = "https://rpc-kichain.mkv.one"
+api = "https://api-kichain.mkv.one"
+grpc = "grpc-kichain.mkv.one:443"
+
+[chains.symbol]
+ticker = "xki"
+
+[chains.snapshot]
+enable = true
+snapshot_url = "https://snapshots.mkv.one/kichain"
+
+[chains.validator]
+enable = true
+operator_addr = "kivaloper1qf76hprcvxe94xtq96ztr6vtyjkd73887z6exd"
+
+wallet_address = "ki1qf76hprcvxe94xtq96ztr6vtyjkd7388295y9n"
+
+
+#Osmosis
+[[chains]]
+name = "Osmosis"
+img_url = "https://raw.githubusercontent.com/cosmos/chain-registry/115602a0a3d1c0168ce5b9af7f24f094f5c00318/osmosis/images/osmo.svg"
+
+[chains.endpoints]
+rpc = "https://rpc-osmosis.mkv.one"
+api = "https://api-osmosis.mkv.one"
+grpc = "grpc-osmosis.mkv.one:443"
+
+[chains.symbol]
+ticker = "osmo"
+
+[chains.snapshot]
+enable = false
+snapshot_url = "https://snapshots.mkv.one/osmosis"
+
+[chains.validator]
+enable = false
+operator_addr = ""
+
+wallet_address = ""
