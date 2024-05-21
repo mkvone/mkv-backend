@@ -15,7 +15,7 @@ RUN apk --no-cache add ca-certificates
 # Set the working directory inside the container.
 WORKDIR /root/
 COPY --from=builder /app/myApp .
-COPY --from=builder /app/config.yml .
+COPY --from=builder /app/example-config.toml .
 
 
 ENTRYPOINT [""]
