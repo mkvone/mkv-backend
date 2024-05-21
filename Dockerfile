@@ -18,4 +18,4 @@ COPY --from=builder /app/myApp .
 COPY --from=builder /app/example-config.toml .
 
 
-ENTRYPOINT [""]
+ENTRYPOINT ["./myApp"]
