@@ -34,12 +34,12 @@
 # CMD ["./myApp"]
 
 FROM golang:1.21.2 as builder
-# RUN apt-get update && apt-get -y upgrade && apt-get install -y upx
+RUN apt-get update && apt-get -y upgrade && apt-get install -y upx
 COPY . /build/app
 WORKDIR /build/app
 
 RUN go get ./... && go build -ldflags "-s -w" -trimpath -o backend main.go
-# RUN upx backend && upx -t backend
+RUN upx backend && upx -t backend
 
 # 2nd stage, create a user to copy, and install libraries needed if connecting to upstream TLS server
 # we don't want the /lib and /lib64 from the go container cause it has more than we need.
