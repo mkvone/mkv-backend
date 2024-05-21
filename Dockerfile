@@ -31,4 +31,4 @@ COPY --from=builder /app/myApp .
 
 
 # Run the binary with ENTRYPOINT.
-ENTRYPOINT ["./myApp"]
+CMD ["./myApp"]
