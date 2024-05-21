@@ -19,12 +19,12 @@ jobs:
               working-directory: .
 
             - name: Stop previous Docker container
-              run: sudo docker stop backend || true
+              run: sudo docker stop mkv_backend_docker_container || true
               continue-on-error: true
 
             - name: Remove previous Docker container
-              run: sudo docker rm backend || true
+              run: sudo docker rm mkv_backend_docker_container || true
               continue-on-error: true
 
             - name: Run Docker container
-              run: sudo docker run -d --name backend -p 1112:9999 --restart unless-stopped -v /home/ubuntu/.mkvBackend/config.toml:/var/lib/backend/config.yml mkv_backend_docker_image
+              run: sudo docker run -d --name mkv_backend_docker_container -p 1112:9999 --restart unless-stopped -v /home/ubuntu/.mkvBackend/config.toml:/var/lib/backend/config.yml mkv_backend_docker_image
