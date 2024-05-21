@@ -1,0 +1,446 @@
+definitions:
+  config.Block:
+    properties:
+      height:
+        type: string
+      time:
+        type: string
+    type: object
+  config.ChainConfig:
+    properties:
+      appname:
+        type: string
+      block:
+        $ref: '#/definitions/config.Block'
+      chainID:
+        type: string
+      cosmosSDK:
+        type: string
+      endpoints:
+        $ref: '#/definitions/config.Endpoints'
+      goVersion:
+        type: string
+      imgURL:
+        type: string
+      name:
+        type: string
+      snapshot:
+        $ref: '#/definitions/config.Snapshot'
+      symbol:
+        $ref: '#/definitions/config.Symbol'
+      validator:
+        $ref: '#/definitions/config.Validator'
+      version:
+        type: string
+    type: object
+  config.Commission:
+    properties:
+      maxChangeRate:
+        type: string
+      maxRate:
+        type: string
+      rate:
+        type: string
+    type: object
+  config.ConsensusPubkey:
+    properties:
+      type:
+        type: string
+      value:
+        type: string
+    type: object
+  config.Description:
+    properties:
+      details:
+        type: string
+      identity:
+        type: string
+      moniker:
+        type: string
+      website:
+        type: string
+    type: object
+  config.Endpoints:
+    properties:
+      api:
+        type: string
+      grpc:
+        type: string
+      rpc:
+        type: string
+    type: object
+  config.File:
+    properties:
+      date:
+        type: string
+      height:
+        type: string
+      name:
+        type: string
+      size:
+        type: string
+      url:
+        type: string
+    type: object
+  config.Snapshot:
+    properties:
+      enable:
+        type: boolean
+      files:
+        items:
+          $ref: '#/definitions/config.File'
+        type: array
+      snapshotURL:
+        type: string
+    type: object
+  config.Symbol:
+    properties:
+      price:
+        type: number
+      ticker:
+        type: string
+    type: object
+  config.Uptime:
+    properties:
+      missedBlock:
+        type: integer
+      percent:
+        type: number
+      tombstoned:
+        type: boolean
+      totalBlock:
+        type: integer
+    type: object
+  config.Validator:
+    properties:
+      commission:
+        $ref: '#/definitions/config.Commission'
+      consensusPubkey:
+        $ref: '#/definitions/config.ConsensusPubkey'
+      delegatorShares:
+        type: string
+      description:
+        $ref: '#/definitions/config.Description'
+      enable:
+        type: boolean
+      jailed:
+        type: boolean
+      operatorAddr:
+        type: string
+      rank:
+        type: integer
+      status:
+        type: string
+      tokens:
+        type: string
+      totalDelegationCounts:
+        type: string
+      uptime:
+        $ref: '#/definitions/config.Uptime'
+      valconAddress:
+        type: string
+      votingPower:
+        type: integer
+      walletAddress:
+        type: string
+    type: object
+  server.APIResponse:
+    properties:
+      code:
+        type: integer
+      data:
+        description: omitempty를 사용하여 데이터가 없는 경우 필드를 생략
+      message:
+        type: string
+    type: object
+  server.Commission:
+    properties:
+      max_change_rate:
+        type: string
+      max_rate:
+        type: string
+      rate:
+        type: string
+    type: object
+  server.Description:
+    properties:
+      details:
+        type: string
+      identity:
+        type: string
+      moniker:
+        type: string
+      website:
+        type: string
+    type: object
+  server.Endpoints:
+    properties:
+      chain_id:
+        type: string
+      grpc:
+        type: string
+      img_url:
+        type: string
+      name:
+        description: Chains []struct {
+        type: string
+      rest_api:
+        type: string
+      rpc:
+        type: string
+    type: object
+  server.Snapshots:
+    properties:
+      app:
+        type: string
+      base_url:
+        type: string
+      chain_id:
+        type: string
+      files:
+        items:
+          $ref: '#/definitions/config.File'
+        type: array
+      go_version:
+        type: string
+      img_url:
+        type: string
+      name:
+        type: string
+    type: object
+  server.Stats:
+    properties:
+      chains_operating:
+        type: integer
+      staked_value_avg:
+        type: number
+      uptime_avg:
+        type: number
+    type: object
+  server.Uptime:
+    properties:
+      missed_block:
+        type: integer
+      percent:
+        type: number
+      tombstoned:
+        type: boolean
+      total_block:
+        type: integer
+    type: object
+  server.Validator:
+    properties:
+      commission:
+        $ref: '#/definitions/server.Commission'
+      delegator_shares:
+        type: string
+      description:
+        $ref: '#/definitions/server.Description'
+      jailed:
+        type: boolean
+      operator_addr:
+        type: string
+      status:
+        type: string
+      tokens:
+        type: string
+      total_delegation_counts:
+        type: string
+      uptime:
+        $ref: '#/definitions/server.Uptime'
+      valcon_address:
+        type: string
+      voting_power: {}
+      wallet_address:
+        type: string
+    type: object
+  server.ValidatorResponse:
+    properties:
+      block_height:
+        type: string
+      block_time:
+        type: string
+      chain_id:
+        type: string
+      image:
+        type: string
+      name:
+        type: string
+      price:
+        type: number
+      ticker:
+        type: string
+      validator:
+        $ref: '#/definitions/server.Validator'
+    type: object
+info:
+  contact: {}
+paths:
+  /chains:
+    get:
+      consumes:
+      - application/json
+      description: Get chains
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/server.APIResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/config.ChainConfig'
+                  type: array
+              type: object
+      summary: Get chains
+      tags:
+      - chains
+  /endpoints:
+    get:
+      consumes:
+      - application/json
+      description: Get endpoints
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/server.APIResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/server.Endpoints'
+              type: object
+      summary: Get endpoints
+      tags:
+      - endpoints
+  /snapshot/{chain}:
+    get:
+      consumes:
+      - application/json
+      description: Get snapshot
+      parameters:
+      - description: Chain ID
+        in: path
+        name: chain
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/server.APIResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/server.Snapshots'
+              type: object
+        "404":
+          description: Not Found
+          schema:
+            allOf:
+            - $ref: '#/definitions/server.APIResponse'
+            - properties:
+                data:
+                  type: object
+              type: object
+      summary: Get snapshot
+      tags:
+      - snapshots
+  /snapshots:
+    get:
+      consumes:
+      - application/json
+      description: Get snapshots
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/server.APIResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/server.Snapshots'
+                  type: array
+              type: object
+      summary: Get snapshots
+      tags:
+      - snapshots
+  /stats:
+    get:
+      consumes:
+      - application/json
+      description: Get stats
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/server.APIResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/server.Stats'
+              type: object
+      summary: Get stats
+      tags:
+      - stats
+  /validator/{chain}:
+    get:
+      consumes:
+      - application/json
+      description: Get validator
+      parameters:
+      - description: Chain ID
+        in: path
+        name: chain
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/server.APIResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/server.Validator'
+              type: object
+      summary: Get validator
+      tags:
+      - validators
+  /validators:
+    get:
+      consumes:
+      - application/json
+      description: Get validators
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/server.APIResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/server.ValidatorResponse'
+                  type: array
+              type: object
+      summary: Get validators
+      tags:
+      - validators
+swagger: "2.0"
