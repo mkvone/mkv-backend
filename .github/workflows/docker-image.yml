@@ -27,4 +27,4 @@ jobs:
               continue-on-error: true
 
             - name: Run Docker container
-              run: sudo docker run -d -p 1112:9999 --restart unless-stopped -v /home/ubuntu/.mkvBackend:/.mkvBackend/ --name mkv_backend_docker_container mkv_backend_docker_image
+              run: sudo docker run -d --name backend -p 1112:9999 --restart unless-stopped -v /home/ubuntu/.mkvBackend/config.toml:/var/lib/backend/config.yml mkv_backend_docker_image
