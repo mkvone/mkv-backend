@@ -43,7 +43,7 @@ FROM golang:1.21.2 as builder
 RUN apt-get update && apt-get -y upgrade
 
 # Try installing UPX again
-RUN apt-get install -y upxCOPY . /build/app
+RUN apt-get install -y upx . /build/app
 
 COPY . /build/app
 WORKDIR /build/app
