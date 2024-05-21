@@ -27,7 +27,7 @@ WORKDIR /root/
 
 # Copy the pre-built binary file from the previous stage.
 COPY --from=builder /app/myApp .
-COPY --from=builder /app/config.toml .
+# COPY --from=builder /app/config.toml .
 
 
 # Run the binary with ENTRYPOINT.
