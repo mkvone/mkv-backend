@@ -34,9 +34,19 @@
 # CMD ["./myApp"]
 
 FROM golang:1.21.2 as builder
-RUN apt-get update && apt-get -y upgrade && apt-get install -y upx
+# Adding universe repository and updating package lists
+RUN apt-get update && \
+    apt-get -y upgrade && \
+    apt-get install -y gnupg software-properties-common && \
+    add-apt-repository universe && \
+    apt-get update
+
+# Try installing UPX again
+RUN apt-get install -y upxCOPY . /build/app
+
 COPY . /build/app
 WORKDIR /build/app
+
 
 RUN go get ./... && go build -ldflags "-s -w" -trimpath -o backend main.go
 RUN upx backend && upx -t backend
