@@ -51,9 +51,10 @@ type Description struct {
 }
 
 type Stats struct {
-	Uptime float32 `json:"uptime_avg"`
-	Staked float32 `json:"staked_value_avg"`
-	Chains int     `json:"chains_operating"`
+	Uptime     float32 `json:"uptime_avg"`
+	Staked     float32 `json:"staked_value_avg"`
+	Chains     int     `json:"chains_operating"`
+	Delegators int     `json:"delegators"`
 }
 
 type Endpoints struct {

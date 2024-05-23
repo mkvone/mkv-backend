@@ -3,6 +3,7 @@ package server
 import (
 	"fmt"
 	"net/http"
+	"strconv"
 
 	"github.com/labstack/echo/v4"
 	_ "github.com/mkvone/mkv-backend/docs"
@@ -176,6 +177,7 @@ func getStats(cfg *config.Config) echo.HandlerFunc {
 		count := 0
 		staked := float32(0)
 		uptime := float32(0)
+		daligators := 0
 		for _, chain := range cfg.Chains {
 			if !chain.Validator.Enable {
 				continue
@@ -183,11 +185,14 @@ func getStats(cfg *config.Config) echo.HandlerFunc {
 			count++
 			staked += float32(chain.Validator.VotingPower) * chain.Symbol.Price
 			uptime += chain.Validator.Uptime.Percent
+			d, _ := strconv.Atoi(chain.Validator.TotalDelegationCounts)
+			daligators += d
 		}
 		stats = Stats{
-			Uptime: uptime / float32(count),
-			Staked: staked,
-			Chains: count,
+			Uptime:     uptime / float32(count),
+			Staked:     staked,
+			Chains:     count,
+			Delegators: daligators,
 		}
 		return c.JSON(http.StatusOK, APIResponse{
 			Message: "Success",

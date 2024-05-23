@@ -212,6 +212,8 @@ definitions:
     properties:
       chains_operating:
         type: integer
+      delegators:
+        type: integer
       staked_value_avg:
         type: number
       uptime_avg:

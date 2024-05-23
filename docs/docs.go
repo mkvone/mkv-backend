@@ -634,6 +634,9 @@ const docTemplate = `{
                 "chains_operating": {
                     "type": "integer"
                 },
+                "delegators": {
+                    "type": "integer"
+                },
                 "staked_value_avg": {
                     "type": "number"
                 },
