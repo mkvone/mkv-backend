@@ -23,6 +23,7 @@ type Validator struct {
 	WalletAddress         string      `json:"wallet_address"`
 	ValconAddress         string      `json:"valcon_address"`
 	VotingPower           any         `json:"voting_power"`
+	Rank                  int         `json:"rank"`
 	Uptime                Uptime      `json:"uptime"`
 	Jailed                bool        `json:"jailed"`
 	Status                string      `json:"status"`

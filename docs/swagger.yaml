@@ -242,6 +242,8 @@ definitions:
         type: boolean
       operator_addr:
         type: string
+      rank:
+        type: integer
       status:
         type: string
       tokens:

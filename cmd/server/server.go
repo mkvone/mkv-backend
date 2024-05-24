@@ -99,6 +99,7 @@ func getValidators(cfg *config.Config) echo.HandlerFunc {
 						TotalBlock:  chain.Validator.Uptime.TotalBlock,
 						Tombstoned:  chain.Validator.Uptime.Tombstoned,
 					},
+					Rank:            chain.Validator.Rank,
 					Jailed:          chain.Validator.Jailed,
 					Status:          chain.Validator.Status,
 					Tokens:          chain.Validator.Tokens,

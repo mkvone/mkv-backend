@@ -680,6 +680,9 @@ const docTemplate = `{
                 "operator_addr": {
                     "type": "string"
                 },
+                "rank": {
+                    "type": "integer"
+                },
                 "status": {
                     "type": "string"
                 },
