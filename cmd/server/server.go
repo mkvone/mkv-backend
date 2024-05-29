@@ -150,10 +150,51 @@ func getValidator(cfg *config.Config) echo.HandlerFunc {
 						Data:    nil,
 					})
 				}
+
+				validatorResponse := ValidatorResponse{
+					Name:        chain.Name,
+					ChainID:     chain.ChainID,
+					Path:        chain.Path,
+					Image:       chain.ImgURL,
+					BlockHeight: chain.Block.Height,
+					BlockTime:   chain.Block.Time,
+					Price:       chain.Symbol.Price,
+					Ticker:      chain.Symbol.Ticker,
+					Validator: Validator{
+						OperatorAddr:  chain.Validator.OperatorAddr,
+						WalletAddress: chain.Validator.WalletAddress,
+						ValconAddress: chain.Validator.ValconAddress,
+						VotingPower:   chain.Validator.VotingPower,
+						Uptime: Uptime{
+							Percent:     chain.Validator.Uptime.Percent,
+							MissedBlock: chain.Validator.Uptime.MissedBlock,
+							TotalBlock:  chain.Validator.Uptime.TotalBlock,
+							Tombstoned:  chain.Validator.Uptime.Tombstoned,
+						},
+						Rank:            chain.Validator.Rank,
+						Jailed:          chain.Validator.Jailed,
+						Status:          chain.Validator.Status,
+						Tokens:          chain.Validator.Tokens,
+						DelegatorShares: chain.Validator.DelegatorShares,
+						Description: Description{
+							Moniker:  chain.Validator.Description.Moniker,
+							Identity: chain.Validator.Description.Identity,
+							Website:  chain.Validator.Description.Website,
+							Details:  chain.Validator.Description.Details,
+						},
+						Commission: Commission{
+							Rate:          chain.Validator.Commission.Rate,
+							MaxRate:       chain.Validator.Commission.MaxRate,
+							MaxChangeRate: chain.Validator.Commission.MaxChangeRate,
+						},
+						TotalDelegationCounts: chain.Validator.TotalDelegationCounts,
+					},
+				}
+
 				return c.JSON(http.StatusOK, APIResponse{
 					Message: "Success",
 					Code:    http.StatusOK,
-					Data:    chain,
+					Data:    validatorResponse,
 				})
 			}
 		}
