@@ -11,6 +11,7 @@ type APIResponse struct {
 type ValidatorResponse struct {
 	Name        string    `json:"name"`
 	ChainID     string    `json:"chain_id"`
+	Path        string    `json:"path"`
 	Image       string    `json:"image"`
 	BlockHeight string    `json:"block_height"`
 	BlockTime   string    `json:"block_time"`
@@ -62,6 +63,7 @@ type Endpoints struct {
 	// Chains []struct {
 	Name    string `json:"name"`
 	ChainID string `json:"chain_id"`
+	Path    string `json:"path"`
 	Rpc     string `json:"rpc"`
 	Rest    string `json:"rest_api"`
 	Grpc    string `json:"grpc"`
@@ -72,6 +74,7 @@ type Endpoints struct {
 type Snapshots struct {
 	Name    string        `json:"name"`
 	ChainID string        `json:"chain_id"`
+	Path    string        `json:"path"`
 	App     string        `json:"app"`
 	Go      string        `json:"go_version"`
 	Img     string        `json:"img_url"`

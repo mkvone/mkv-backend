@@ -334,6 +334,9 @@
                 "name": {
                     "type": "string"
                 },
+                "path": {
+                    "type": "string"
+                },
                 "snapshot": {
                     "$ref": "#/definitions/config.Snapshot"
                 },
@@ -580,6 +583,9 @@
                     "description": "Chains []struct {",
                     "type": "string"
                 },
+                "path": {
+                    "type": "string"
+                },
                 "rest_api": {
                     "type": "string"
                 },
@@ -613,6 +619,9 @@
                     "type": "string"
                 },
                 "name": {
+                    "type": "string"
+                },
+                "path": {
                     "type": "string"
                 }
             }
@@ -709,6 +718,9 @@
                     "type": "string"
                 },
                 "name": {
+                    "type": "string"
+                },
+                "path": {
                     "type": "string"
                 },
                 "price": {

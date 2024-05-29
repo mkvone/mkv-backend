@@ -83,6 +83,7 @@ func getValidators(cfg *config.Config) echo.HandlerFunc {
 			validators = append(validators, ValidatorResponse{
 				Name:        chain.Name,
 				ChainID:     chain.ChainID,
+				Path:        chain.Path,
 				Image:       chain.ImgURL,
 				BlockHeight: chain.Block.Height,
 				BlockTime:   chain.Block.Time,
@@ -139,9 +140,9 @@ func getValidators(cfg *config.Config) echo.HandlerFunc {
 // @Router /validator/{chain} [get]
 func getValidator(cfg *config.Config) echo.HandlerFunc {
 	return func(c echo.Context) error {
-		chainID := c.Param("chain")
+		path := c.Param("chain")
 		for _, chain := range cfg.Chains {
-			if chain.ChainID == chainID {
+			if chain.Path == path {
 				if !chain.Validator.Enable {
 					return c.JSON(http.StatusOK, APIResponse{
 						Message: "Success",
@@ -218,6 +219,7 @@ func getEndpoints(cfg *config.Config) echo.HandlerFunc {
 			endpoints = append(endpoints, Endpoints{
 				Name:    chain.Name,
 				ChainID: chain.ChainID,
+				Path:    chain.Path,
 				Rpc:     chain.Endpoints.Rpc,
 				Rest:    chain.Endpoints.Api,
 				Grpc:    chain.Endpoints.Grpc,
@@ -252,6 +254,7 @@ func getSnapshots(cfg *config.Config) echo.HandlerFunc {
 			snapshots = append(snapshots, Snapshots{
 				Name:    chain.Name,
 				ChainID: chain.ChainID,
+				Path:    chain.Path,
 				App:     chain.Appname,
 				Go:      chain.GoVersion,
 				Img:     chain.ImgURL,
@@ -280,11 +283,11 @@ func getSnapshots(cfg *config.Config) echo.HandlerFunc {
 // @Router /snapshot/{chain} [get]
 func getSnapshot(cfg *config.Config) echo.HandlerFunc {
 	return func(c echo.Context) error {
-		chainID := c.Param("chain")
+		path := c.Param("chain")
 		var snapshots Snapshots
 
 		for _, chain := range cfg.Chains {
-			if chain.ChainID == chainID {
+			if chain.Path == path {
 				if !chain.Snapshot.Enable {
 					return c.JSON(http.StatusNotFound, APIResponse{
 						Message: "Invalid chain ID or chain not found",
@@ -295,6 +298,7 @@ func getSnapshot(cfg *config.Config) echo.HandlerFunc {
 				snapshots = Snapshots{
 					Name:    chain.Name,
 					ChainID: chain.ChainID,
+					Path:    chain.Path,
 					App:     chain.Appname,
 					Go:      chain.GoVersion,
 					Img:     chain.ImgURL,

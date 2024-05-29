@@ -345,6 +345,9 @@ const docTemplate = `{
                 "name": {
                     "type": "string"
                 },
+                "path": {
+                    "type": "string"
+                },
                 "snapshot": {
                     "$ref": "#/definitions/config.Snapshot"
                 },
@@ -591,6 +594,9 @@ const docTemplate = `{
                     "description": "Chains []struct {",
                     "type": "string"
                 },
+                "path": {
+                    "type": "string"
+                },
                 "rest_api": {
                     "type": "string"
                 },
@@ -624,6 +630,9 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "name": {
+                    "type": "string"
+                },
+                "path": {
                     "type": "string"
                 }
             }
@@ -720,6 +729,9 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "name": {
+                    "type": "string"
+                },
+                "path": {
                     "type": "string"
                 },
                 "price": {

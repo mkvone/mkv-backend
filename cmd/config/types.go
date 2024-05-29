@@ -54,6 +54,7 @@ type TelegramConfig struct {
 type ChainConfig struct {
 	Name      string `toml:"name"`
 	ChainID   string
+	Path      string `toml:"path"`
 	Appname   string
 	Version   string
 	GoVersion string
