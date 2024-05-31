@@ -632,6 +632,9 @@ const docTemplate = `{
                 "name": {
                     "type": "string"
                 },
+                "node_version": {
+                    "type": "string"
+                },
                 "path": {
                     "type": "string"
                 }

@@ -72,12 +72,13 @@ type Endpoints struct {
 }
 
 type Snapshots struct {
-	Name    string        `json:"name"`
-	ChainID string        `json:"chain_id"`
-	Path    string        `json:"path"`
-	App     string        `json:"app"`
-	Go      string        `json:"go_version"`
-	Img     string        `json:"img_url"`
-	Base    string        `json:"base_url"`
-	Files   []config.File `json:"files"`
+	Name        string        `json:"name"`
+	ChainID     string        `json:"chain_id"`
+	Path        string        `json:"path"`
+	App         string        `json:"app"`
+	Go          string        `json:"go_version"`
+	Img         string        `json:"img_url"`
+	Base        string        `json:"base_url"`
+	Files       []config.File `json:"files"`
+	NodeVersion string        `json:"node_version"`
 }

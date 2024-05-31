@@ -293,14 +293,15 @@ func getSnapshots(cfg *config.Config) echo.HandlerFunc {
 			}
 
 			snapshots = append(snapshots, Snapshots{
-				Name:    chain.Name,
-				ChainID: chain.ChainID,
-				Path:    chain.Path,
-				App:     chain.Appname,
-				Go:      chain.GoVersion,
-				Img:     chain.ImgURL,
-				Base:    chain.Snapshot.SnapshotURL,
-				Files:   chain.Snapshot.Files,
+				Name:        chain.Name,
+				ChainID:     chain.ChainID,
+				Path:        chain.Path,
+				App:         chain.Appname,
+				Go:          chain.GoVersion,
+				Img:         chain.ImgURL,
+				Base:        chain.Snapshot.SnapshotURL,
+				Files:       chain.Snapshot.Files,
+				NodeVersion: chain.Version,
 			})
 		}
 
@@ -337,14 +338,15 @@ func getSnapshot(cfg *config.Config) echo.HandlerFunc {
 					})
 				}
 				snapshots = Snapshots{
-					Name:    chain.Name,
-					ChainID: chain.ChainID,
-					Path:    chain.Path,
-					App:     chain.Appname,
-					Go:      chain.GoVersion,
-					Img:     chain.ImgURL,
-					Base:    chain.Snapshot.SnapshotURL,
-					Files:   chain.Snapshot.Files,
+					Name:        chain.Name,
+					ChainID:     chain.ChainID,
+					Path:        chain.Path,
+					App:         chain.Appname,
+					Go:          chain.GoVersion,
+					Img:         chain.ImgURL,
+					Base:        chain.Snapshot.SnapshotURL,
+					Files:       chain.Snapshot.Files,
+					NodeVersion: chain.Version,
 				}
 
 				return c.JSON(http.StatusOK, APIResponse{
