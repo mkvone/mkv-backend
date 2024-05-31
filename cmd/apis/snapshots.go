@@ -2,6 +2,7 @@ package apis
 
 import (
 	"net/http"
+	"sort"
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
@@ -125,7 +126,9 @@ func updateSnapshotInfo(chain *[]config.ChainConfig) {
 				})
 
 			})
+			sort.Slice(chain.Snapshot.Files, func(i, j int) bool {
+				return chain.Snapshot.Files[i].Height > chain.Snapshot.Files[j].Height
+			})
 		}(&(*chain)[i], &(*chain)[i].Validator)
 	}
-
 }
