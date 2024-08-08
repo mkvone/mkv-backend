@@ -9,7 +9,7 @@ import (
 
 func refresh_Validator_Signing_Status(cfg *[]config.ChainConfig) {
 	for i, _ := range *cfg {
-		go func(chain config.ChainConfig, validator *config.Validator) {
+		go func(chain *config.ChainConfig, validator *config.Validator) {
 			if !validator.Enable {
 				l("❓ Skipping validator update for chain name : ", chain.Name)
 				return
@@ -28,7 +28,24 @@ func refresh_Validator_Signing_Status(cfg *[]config.ChainConfig) {
 			}
 			updateSigningInfo(validator, signingInfo)
 			l("✅ Signing info updated chain name : ", chain.Name)
-		}((*cfg)[i], &(*cfg)[i].Validator)
+		}(&(*cfg)[i], &(*cfg)[i].Validator)
+	}
+}
+
+func ParsingNodeInfo(cfg *[]config.ChainConfig) {
+	for i := range *cfg {
+		go func(chain *config.ChainConfig, nodeInfo NodeInfo) {
+			apiBaseURL := chain.Endpoints.Api
+			// Fetch and update node info
+			node_infoParamsURL := apiBaseURL + "/cosmos/base/tendermint/v1beta1/node_info"
+			if err := fetchDataAndHandleError(node_infoParamsURL, &nodeInfo); err != nil {
+				l("❌ Error fetching  ", chain.Name, "'s node info", err)
+				return
+			}
+			updateNodeInfo(chain, nodeInfo)
+			l("✅ Node info updated chain name : ", chain.Name)
+
+		}(&(*cfg)[i], NodeInfo{})
 	}
 }
 func daily_Validator_and_Chain_Updates(cfg *[]config.ChainConfig) {
@@ -36,14 +53,14 @@ func daily_Validator_and_Chain_Updates(cfg *[]config.ChainConfig) {
 		go func(chain *config.ChainConfig, validator *config.Validator) {
 			apiBaseURL := chain.Endpoints.Api
 			// Fetch and update node info
-			node_infoParamsURL := apiBaseURL + "/cosmos/base/tendermint/v1beta1/node_info"
-			var nodeInfo NodeInfo
-			if err := fetchDataAndHandleError(node_infoParamsURL, &nodeInfo); err != nil {
-				l("❌ Error fetching  ", chain.Name, "'s node info", err)
-				return
-			}
-			updateNodeInfo(chain, nodeInfo)
-			l("✅ Node info updated chain name : ", chain.Name)
+			// node_infoParamsURL := apiBaseURL + "/cosmos/base/tendermint/v1beta1/node_info"
+			// var nodeInfo NodeInfo
+			// if err := fetchDataAndHandleError(node_infoParamsURL, &nodeInfo); err != nil {
+			// 	l("❌ Error fetching  ", chain.Name, "'s node info", err)
+			// 	return
+			// }
+			// updateNodeInfo(chain, nodeInfo)
+			// l("✅ Node info updated chain name : ", chain.Name)
 			if !validator.Enable {
 				l("❓ Skipping validator update for chain name : ", chain.Name)
 				return

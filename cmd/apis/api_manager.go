@@ -24,6 +24,7 @@ func (m *APIManager) UpdateEveryDay() {
 
 func (m *APIManager) UpdateEvery1Min() {
 	updateSnapshotInfo(m.Config)
+	ParsingNodeInfo(m.Config)
 }
 func (m *APIManager) UpdateEvery5Min() {
 	updateSymbolPrice(m.Config)
