@@ -18,6 +18,7 @@ func refresh_Validator_Signing_Status(cfg *[]config.ChainConfig) {
 
 			// Fetch signing info
 			consAddr, _ := utils.EncodeValidatorAddress(validator.ConsensusPubkey.Value, validator.OperatorAddr)
+			
 			validator.ValconAddress = consAddr
 			signingInfoURL := apiBaseURL + "/cosmos/slashing/v1beta1/signing_infos/" + consAddr
 
